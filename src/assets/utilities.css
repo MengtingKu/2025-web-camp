@@ -1,0 +1,33 @@
+*,
+*::before,
+*::after {
+  @apply box-border;
+}
+
+body {
+  @apply font-noto-tc leading-[1.5] font-medium;
+}
+
+img {
+  @apply h-auto max-w-full;
+}
+
+a {
+  @apply inline-block;
+}
+
+.container {
+  @apply mx-auto max-w-[1296px] px-3;
+}
+
+.btn {
+  @apply text-body-text border-primary-text rounded-full border-[1px] px-4 py-2 transition-colors duration-300;
+
+  &:disabled {
+    @apply bg-light-divider text-body-text border-light-divider cursor-not-allowed;
+  }
+
+  &:hover {
+    @apply bg-primary-text cursor-pointer text-white;
+  }
+}
