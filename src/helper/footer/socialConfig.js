@@ -1,5 +1,3 @@
-import { icon } from "@fortawesome/fontawesome-svg-core";
-
 /**
  * 頁面：頁尾社交媒體配置
  */

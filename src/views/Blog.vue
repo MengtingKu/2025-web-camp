@@ -2,15 +2,18 @@
 import { computed, ref } from "vue";
 import { blog } from "@/helper/blog/blogConfig.js";
 import { socialList } from "@/helper/footer/socialConfig";
+import { banner } from "@/helper/banner/bannerConfig";
 import BlogCard from "@/components/BlogCard.vue";
 import RwdImage from "@/components/RwdImage.vue";
 
 const currentPage = ref(1);
+const { blog: blogBanner } = banner;
 const categoryBlog = computed(() =>
   Object.groupBy(blog, ({ status }) => status === 1),
 );
 
-const getImage = (url) => new URL(`${url}`, import.meta.url).href;
+const getImage = (iconName) =>
+  new URL(`/src/helper/footer/images/${iconName}.svg`, import.meta.url).href;
 </script>
 
 <template>
@@ -18,17 +21,19 @@ const getImage = (url) => new URL(`${url}`, import.meta.url).href;
     <section class="bg-background-light border-divider border-b-[1px]">
       <div class="grid grid-cols-1 sm:grid-cols-2">
         <RwdImage
-          :moSrc="getImage(`/src/assets/images/alyse-mo.png`)"
-          :pcSrc="getImage(`/src/assets/images/alyse-pc.png`)"
-          alt="alyse wang"
+          :moSrc="blogBanner.imgUrl_mo"
+          :pcSrc="blogBanner.imgUrl_pc"
+          :alt="blogBanner.title"
           width="960"
           height="834"
         />
         <div
           class="text-theme-blue flex flex-col justify-center bg-[url(/src/assets/images/banner-bg.png)] bg-center bg-no-repeat object-cover p-6 sm:p-20"
         >
-          <h1 class="text-[52px] font-black sm:text-[120px]">BLOG</h1>
-          <p class="text-[28px] font-bold">前端工程師 & 職涯諮詢師</p>
+          <h1 class="text-[52px] font-black sm:text-[120px]">
+            {{ blogBanner.title.toUpperCase() }}
+          </h1>
+          <p class="text-[28px] font-bold">{{ blogBanner.subTitle }}</p>
         </div>
       </div>
     </section>
@@ -105,9 +110,7 @@ const getImage = (url) => new URL(`${url}`, import.meta.url).href;
                 target="_blank"
               >
                 <img
-                  :src="
-                    getImage(`/src/helper/footer/images/${social.icon}.svg`)
-                  "
+                  :src="getImage(social.icon)"
                   :alt="social.icon"
                   width="24"
                   height="24"
