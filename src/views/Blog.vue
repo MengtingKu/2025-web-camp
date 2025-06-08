@@ -5,19 +5,12 @@ import { socialList } from "@/helper/footer/socialConfig";
 import BlogCard from "@/components/BlogCard.vue";
 import RwdImage from "@/components/RwdImage.vue";
 
-const isHelpExpanded = ref(false);
 const currentPage = ref(1);
-
-const toggleHelp = () => {
-  isHelpExpanded.value = !isHelpExpanded.value;
-};
-
 const categoryBlog = computed(() =>
   Object.groupBy(blog, ({ status }) => status === 1),
 );
 
-const getIconUrl = (iconName) =>
-  new URL(`/src/helper/footer/images/${iconName}.svg`, import.meta.url).href;
+const getImage = (url) => new URL(`${url}`, import.meta.url).href;
 </script>
 
 <template>
@@ -25,8 +18,8 @@ const getIconUrl = (iconName) =>
     <section class="bg-background-light border-divider border-b-[1px]">
       <div class="grid grid-cols-1 sm:grid-cols-2">
         <RwdImage
-          moSrc="/src/assets/images/alyse-mo.png"
-          pcSrc="/src/assets/images/alyse-pc.png"
+          :moSrc="getImage(`/src/assets/images/alyse-mo.png`)"
+          :pcSrc="getImage(`/src/assets/images/alyse-pc.png`)"
           alt="alyse wang"
           width="960"
           height="834"
@@ -112,7 +105,9 @@ const getIconUrl = (iconName) =>
                 target="_blank"
               >
                 <img
-                  :src="getIconUrl(social.icon)"
+                  :src="
+                    getImage(`/src/helper/footer/images/${social.icon}.svg`)
+                  "
                   :alt="social.icon"
                   width="24"
                   height="24"

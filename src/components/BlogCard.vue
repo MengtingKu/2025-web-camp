@@ -33,11 +33,6 @@ const statusTag = (status) => {
         :pcSrc="item.imgUrl_pc"
         :alt="item.title"
       />
-      <!-- <img
-        :src="item.imgUrl"
-        :alt="item.title"
-        class="h-full w-full object-cover"
-      /> -->
     </div>
     <div class="card-body" :class="isLatest ? 'px-3 py-12 md:w-[636px]' : ''">
       <time class="mb-1">{{ item.date }}</time>
@@ -66,5 +61,3 @@ const statusTag = (status) => {
     </div>
   </div>
 </template>
-
-<style scoped lang="scss"></style>
